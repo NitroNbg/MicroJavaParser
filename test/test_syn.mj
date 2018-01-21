@@ -1,0 +1,19 @@
+program test_syn
+	int prva s, prava;
+	char druga;
+	{
+		void pravilna(int x) int zbir; {
+			zbir = x + prva;
+			return zbir;
+		}
+		int nepravilna(int x) int zbir; {
+			zbir = x + prva +;
+			return zbir;
+		}
+		void main() {
+			prava = 0;
+			prava = nepravilna(2);
+			prava = pravilna(3) s;
+			print(prava);
+		}
+	}

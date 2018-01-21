@@ -1,0 +1,164 @@
+package rs.ac.bg.etf.pp1;
+
+import java_cup.runtime.Symbol;
+import org.apache.log4j.*; 
+import rs.ac.bg.etf.pp1.ast.*;
+import rs.etf.pp1.symboltable.concepts.*;
+
+parser code {:
+    
+    boolean errorOccurred = false; 
+         
+    public void report_fatal_error(String message, Object   info) throws java.lang.Exception {
+      done_parsing();
+      report_error(message, info);
+    }
+  
+    public void syntax_error(Symbol cur_token) {
+        report_error("\nSintaksna greška", cur_token);
+    }
+  
+    public void unrecovered_syntax_error(Symbol cur_token) throws java.lang.Exception {
+        report_fatal_error("Fatalna greška, parsiranje se ne može nastaviti", cur_token);
+    }
+
+  	public void report_error(String message, Object info) {
+      errorOccurred = true;
+      System.err.print(message);
+      System.err.flush();
+      if (info instanceof Symbol) {
+	  	System.err.println(" u liniji " + ((Symbol)info).left);
+	  }
+      else {
+      	System.err.println("");
+      }
+    }
+
+:}
+
+terminal PROG, VOID, NEW, CLASS, EXTENDS, CONST ;
+terminal LCURLY, RCURLY, SEMICOLON, COMMA, LBRACKET, RBRACKET, DOT, LINDBRACKET, RINDBRACKET ;
+terminal PLUS, MINUS, EQUALS, DIV, MUL, MOD, AND, OR ;
+terminal PLUSPLUS, MINUSMINUS, EQUALSEQUALS, NOTEQUALS, GREATER, GREATEREQUALS, LESS, LESSEQUALS ;
+terminal READ, PRINT, RETURN, BREAK, CONTINUE, IF, ELSE, DO, WHILE ;
+terminal String IDENT ;
+terminal Boolean BOOL ;
+terminal Character CHAR ;
+terminal Integer NUMBER ;
+
+// From Mikrojava spec
+
+nonterminal program, constDecl, varDecl, classDecl, formPars ;
+nonterminal statement, actParams, condition, condTerm, condFact, relop, addop, mulop ;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct type, expr, term, factor ;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj designator, methodDecl, designatorStatement ;
+
+// Custom
+
+nonterminal globalList, globalDecl, extendsClass ;
+nonterminal constDeclCommonPrefix, constDeclarations, constDeclValue ;
+nonterminal methodDeclListOpt, methodDeclList, var, varDeclList, localVars, formParsOpt, formalParam, actParamsOpt ;
+nonterminal openExpression, closeExpression ;
+nonterminal MethodName methodName;
+nonterminal statementList, designatorStatementSuffix, printConstArguments ;
+nonterminal Matched matched ;
+nonterminal Unmatched unmatched ;
+nonterminal MatchedWhile whileLoopMatched ;
+nonterminal UnmatchedWhile whileLoopUnmatched ;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct termList, typeVoid, typeConst ;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj progId ;
+
+// From Mikrojava spec definitions
+
+program ::= (ProgramImpl) PROG progId:id globalList LCURLY methodDeclList RCURLY ;
+
+constDecl ::= (ConstDecl) constDeclCommonPrefix constDeclarations ;
+
+varDecl ::= (VariableDefinition) type varDeclList ;
+
+classDecl ::= (ClassDefinition) CLASS IDENT extendsClass LCURLY localVars methodDeclListOpt RCURLY ;
+
+methodDecl ::= (MethodBody) methodName LBRACKET formParsOpt RBRACKET localVars LCURLY statementList RCURLY ;
+
+formPars ::= (FormalParameters) formPars COMMA formalParam | (FormalParameter) formalParam ;
+
+type ::= (TypeIdentifier) IDENT ;
+
+statement ::= (MatchedStatement) matched | (UnamtchedStatement) unmatched ;
+
+designatorStatement ::= (DesignatorStatementDeclaration) designator designatorStatementSuffix | (ErrorDesignatorStatementSyntax) designator error ;
+
+actParams ::= (ActParamsAdjoined) actParams COMMA expr | (ExprParam) expr ;
+
+condition ::= (ComplexCondition) condition OR condTerm | (SimpleCondition) condTerm ;
+
+condTerm ::= (CondTermAnd) condTerm AND condFact | (CondFactTerm) condFact ;
+
+condFact ::= (CondFactRelation) condFact relop expr | (ExprFact) expr ;
+
+expr ::= (TermListExpr) termList | (NegativeTermListExpr) MINUS termList ;
+
+term ::= (MulTerm) term mulop factor | (FactorTerm) factor ;
+
+factor ::= (DesignatorFactor) designator | (DesignatorFunctionFactor) designator LBRACKET actParamsOpt RBRACKET
+		   |
+		   (ConstFactor) typeConst
+		   |
+		   (NewArgumentFactor) NEW type | (NewArgumentArrayFactor) NEW type LINDBRACKET expr RINDBRACKET
+		   |
+		   (ExprFactor) openExpression expr closeExpression ;
+
+designator ::= (DesignatorField) designator DOT IDENT | (DesignatorArrayElement) designator LINDBRACKET expr RINDBRACKET | (DesignatorIdent) IDENT ;
+
+relop ::= (IsEqualOp) EQUALSEQUALS | (IsNotEqualOp) NOTEQUALS | (IsGreaterOp) GREATER | (IsGreaterOrEqualOp) GREATEREQUALS | (IsLessOp) LESS | (IsLessOrEqualOp) LESSEQUALS ;
+
+addop ::= (PlusOp) PLUS | (MinusOp) MINUS ;
+
+mulop ::= (MulExp) MUL | (DivExp) DIV | (ModExp) MOD ;
+
+// Custom non-terminal definitions
+
+progId ::= (ProgId) IDENT:id ;
+globalList ::= (GlobalDeclarations) globalList globalDecl | (NoGlobals) /* epsilon */ ;
+globalDecl ::= (GlobalConst) constDecl SEMICOLON | (GlobalVar) varDecl SEMICOLON | (GlobalClass) classDecl ;
+constDeclCommonPrefix ::= (ConstCommonPrefix) CONST type ;
+constDeclarations ::= (Constants) constDeclarations COMMA constDeclValue | (ErrorConstantDeclarationsComma) constDeclarations COMMA error COMMA constDeclValue | (Constant) constDeclValue ;
+constDeclValue ::= (ConstDeclaration) IDENT EQUALS typeConst | (ErrorConstDeclaration) IDENT error ;
+localVars ::= (LocalVariables) localVars varDecl SEMICOLON | (NoLocals) /* epsilon */ ;
+varDeclList ::= (VarDeclarations) varDeclList COMMA var | (VarDeclaration) var ;
+var ::= (Variable) IDENT | (ErrorVarDeclaration) IDENT error | (Array) IDENT LINDBRACKET RINDBRACKET | (ErrorVarArrayDeclaration) IDENT LINDBRACKET RINDBRACKET error ;
+extendsClass ::= (ExtendsBaseClass) EXTENDS type | (ExtendsObject) /* epsilon */ ;
+typeConst ::= (BoolRef) BOOL | (IntRef) NUMBER | (CharRef) CHAR ;
+typeVoid ::= (ActualType) type | (VoidType) VOID ;
+methodName ::= (MethodName) typeVoid IDENT ;
+methodDeclList ::= (MethodDeclarations) methodDeclList methodDecl | (MethodDeclaration) methodDecl ;
+methodDeclListOpt ::= (MethodDeclarationsInScope) LCURLY methodDeclList RCURLY | (NoMethodDeclaration) /* epsilon */ ;
+formParsOpt ::= (FormalParams) formPars | (NoFormalParameters) /* epsilon */ ;
+formalParam ::= (FormPar) type var ;
+statementList ::= (Statements) statementList statement | (NoStatementList) /* epsilon */ ;
+unmatched ::= (UnamtechdIf) IF LBRACKET condition RBRACKET statement | (UnmatchedIfElse) IF LBRACKET condition RBRACKET matched ELSE unmatched | (UnmatchedWhile) whileLoopUnmatched ;
+matched ::= 	  (DesignatorExpressionStatement) designatorStatement SEMICOLON
+			  |
+			  (MatchedIf) IF LBRACKET condition RBRACKET matched ELSE matched
+			  |
+			  (MatchedWhile) whileLoopMatched
+			  |
+			  (BreakStatement) BREAK SEMICOLON
+			  |
+			  (ContinueStatement) CONTINUE SEMICOLON
+			  |
+			  (ReturnStatement) RETURN expr SEMICOLON | (ReturnVoidStatement) RETURN SEMICOLON
+			  |
+			  (ReadStatement) READ LBRACKET designator RBRACKET SEMICOLON
+			  |
+			  (PrintStatement) PRINT LBRACKET expr printConstArguments RBRACKET SEMICOLON
+			  |
+			  (StatementsInScope) LCURLY statementList RCURLY ;
+printConstArguments ::= (PrintArguments) printConstArguments COMMA NUMBER | (NoPrintArguments) /* epsilon */ ; 
+whileLoopMatched ::= (WhileLoopMatched) DO matched WHILE LBRACKET condition RBRACKET SEMICOLON ;
+whileLoopUnmatched ::= (WhileLoopUnmatched) DO unmatched WHILE LBRACKET condition RBRACKET SEMICOLON ;
+designatorStatementSuffix ::= (DesignatorExpression) EQUALS expr | (DesignatorFunctionParams) LBRACKET actParamsOpt RBRACKET | (DesignatorPostIncrement) PLUSPLUS | (DesignatorPostDecrement) MINUSMINUS ;
+actParamsOpt ::= (ActualParams) actParams | (NoActualParams) /* epsilon */ ;
+termList ::= (AddExpr) termList addop term | (TermExpr) term ;
+openExpression ::= (StartExp) LBRACKET ;
+closeExpression ::= (EndExp) RBRACKET ;

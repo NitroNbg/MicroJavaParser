@@ -1,0 +1,233 @@
+Prevođenje izvorne datoteke: C:\MJCompiler\test\test_sem.mj
+Parsiranje izvorne datoteke uspešno završeno
+==========Sadržaj AST==========
+ProgramImpl(
+  ProgId(
+   TestSem
+  ) [ProgId]
+  GlobalDeclarations(
+    GlobalDeclarations(
+      NoGlobals(
+      ) [NoGlobals]
+      GlobalVar(
+        VariableDefinition(
+          TypeIdentifier(
+           int
+          ) [TypeIdentifier]
+          VarDeclarations(
+            VarDeclaration(
+              Variable(
+               x
+              ) [Variable]
+            ) [VarDeclaration]
+            Variable(
+             y
+            ) [Variable]
+          ) [VarDeclarations]
+        ) [VariableDefinition]
+      ) [GlobalVar]
+    ) [GlobalDeclarations]
+    GlobalConst(
+      ConstDecl(
+        ConstCommonPrefix(
+          TypeIdentifier(
+           int
+          ) [TypeIdentifier]
+        ) [ConstCommonPrefix]
+        Constant(
+          ConstDeclaration(
+           ispravna
+            IntRef(
+             2
+            ) [IntRef]
+          ) [ConstDeclaration]
+        ) [Constant]
+      ) [ConstDecl]
+    ) [GlobalConst]
+  ) [GlobalDeclarations]
+  MethodDeclarations(
+    MethodDeclaration(
+      MethodBody(
+        MethodName(
+          VoidType(
+          ) [VoidType]
+         ispis_inta
+        ) [MethodName]
+        FormalParams(
+          FormalParameter(
+            FormPar(
+              TypeIdentifier(
+               int
+              ) [TypeIdentifier]
+              Variable(
+               a
+              ) [Variable]
+            ) [FormPar]
+          ) [FormalParameter]
+        ) [FormalParams]
+        NoLocals(
+        ) [NoLocals]
+        Statements(
+          NoStatementList(
+          ) [NoStatementList]
+          MatchedStatement(
+            PrintStatement(
+              TermListExpr(
+                TermExpr(
+                  FactorTerm(
+                    DesignatorFactor(
+                      DesignatorIdent(
+                       a
+                      ) [DesignatorIdent]
+                    ) [DesignatorFactor]
+                  ) [FactorTerm]
+                ) [TermExpr]
+              ) [TermListExpr]
+              NoPrintArguments(
+              ) [NoPrintArguments]
+            ) [PrintStatement]
+          ) [MatchedStatement]
+        ) [Statements]
+      ) [MethodBody]
+    ) [MethodDeclaration]
+    MethodBody(
+      MethodName(
+        VoidType(
+        ) [VoidType]
+       main
+      ) [MethodName]
+      FormalParams(
+        FormalParameter(
+          FormPar(
+            TypeIdentifier(
+             int
+            ) [TypeIdentifier]
+            Variable(
+             a
+            ) [Variable]
+          ) [FormPar]
+        ) [FormalParameter]
+      ) [FormalParams]
+      NoLocals(
+      ) [NoLocals]
+      Statements(
+        Statements(
+          Statements(
+            Statements(
+              NoStatementList(
+              ) [NoStatementList]
+              MatchedStatement(
+                DesignatorExpressionStatement(
+                  DesignatorStatementDeclaration(
+                    DesignatorIdent(
+                     x
+                    ) [DesignatorIdent]
+                    DesignatorExpression(
+                      TermListExpr(
+                        TermExpr(
+                          FactorTerm(
+                            DesignatorFactor(
+                              DesignatorIdent(
+                               ispravna
+                              ) [DesignatorIdent]
+                            ) [DesignatorFactor]
+                          ) [FactorTerm]
+                        ) [TermExpr]
+                      ) [TermListExpr]
+                    ) [DesignatorExpression]
+                  ) [DesignatorStatementDeclaration]
+                ) [DesignatorExpressionStatement]
+              ) [MatchedStatement]
+            ) [Statements]
+            MatchedStatement(
+              DesignatorExpressionStatement(
+                DesignatorStatementDeclaration(
+                  DesignatorIdent(
+                   y
+                  ) [DesignatorIdent]
+                  DesignatorExpression(
+                    TermListExpr(
+                      AddExpr(
+                        TermExpr(
+                          FactorTerm(
+                            DesignatorFactor(
+                              DesignatorIdent(
+                               x
+                              ) [DesignatorIdent]
+                            ) [DesignatorFactor]
+                          ) [FactorTerm]
+                        ) [TermExpr]
+                        PlusOp(
+                        ) [PlusOp]
+                        FactorTerm(
+                          DesignatorFactor(
+                            DesignatorIdent(
+                             neispravna
+                            ) [DesignatorIdent]
+                          ) [DesignatorFactor]
+                        ) [FactorTerm]
+                      ) [AddExpr]
+                    ) [TermListExpr]
+                  ) [DesignatorExpression]
+                ) [DesignatorStatementDeclaration]
+              ) [DesignatorExpressionStatement]
+            ) [MatchedStatement]
+          ) [Statements]
+          MatchedStatement(
+            DesignatorExpressionStatement(
+              DesignatorStatementDeclaration(
+                DesignatorIdent(
+                 ispis_inta
+                ) [DesignatorIdent]
+                DesignatorFunctionParams(
+                  NoActualParams(
+                  ) [NoActualParams]
+                ) [DesignatorFunctionParams]
+              ) [DesignatorStatementDeclaration]
+            ) [DesignatorExpressionStatement]
+          ) [MatchedStatement]
+        ) [Statements]
+        MatchedStatement(
+          DesignatorExpressionStatement(
+            DesignatorStatementDeclaration(
+              DesignatorIdent(
+               ispis_inta
+              ) [DesignatorIdent]
+              DesignatorFunctionParams(
+                ActualParams(
+                  ExprParam(
+                    TermListExpr(
+                      TermExpr(
+                        FactorTerm(
+                          DesignatorFactor(
+                            DesignatorIdent(
+                             x
+                            ) [DesignatorIdent]
+                          ) [DesignatorFactor]
+                        ) [FactorTerm]
+                      ) [TermExpr]
+                    ) [TermListExpr]
+                  ) [ExprParam]
+                ) [ActualParams]
+              ) [DesignatorFunctionParams]
+            ) [DesignatorStatementDeclaration]
+          ) [DesignatorExpressionStatement]
+        ) [MatchedStatement]
+      ) [Statements]
+    ) [MethodBody]
+  ) [MethodDeclarations]
+) [ProgramImpl]
+==============SEMANT�?IKA ANALIZA==============
+Red 2: deklarisana globalna promenljiva int x
+Red 2: deklarisana globalna promenljiva int y
+Red 3: deklarisana konstanta ispravna sa vrednošću 2
+Red 5: deklarisana lokalna promenljiva int a
+Korišćenje promenljive a u redu 6; Var a: Int 1 0
+Red 9: deklarisana lokalna promenljiva int a
+Korišćenje promenljive x u redu 10; Var x: Int 0 0
+Korišćenje konstante ispravna u redu 10; Con ispravna: Int 0 2
+Korišćenje promenljive y u redu 11; Var y: Int 0 1
+Korišćenje promenljive x u redu 11; Var x: Int 0 0
+Poziv metode ispis_inta u redu 12
+Korišćenje promenljive x u redu 13; Var x: Int 0 0
+Poziv metode ispis_inta u redu 13

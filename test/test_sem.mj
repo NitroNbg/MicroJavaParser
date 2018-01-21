@@ -1,0 +1,15 @@
+program TestSem
+	int x, y;
+	const int ispravna = 2;
+	{
+		void ispis_inta(int a) {
+			print(a);
+		}
+	
+		void main(int a) {
+			x = ispravna;
+			y = x + neispravna;
+			ispis_inta();
+			ispis_inta(x);
+		}
+	}

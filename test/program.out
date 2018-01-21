@@ -1,0 +1,437 @@
+Prevođenje izvorne datoteke: C:\MJCompiler\test\program.mj
+Parsiranje izvorne datoteke uspešno završeno
+==========Sadržaj AST==========
+ProgramImpl(
+  ProgId(
+   MJProgram
+  ) [ProgId]
+  GlobalDeclarations(
+    GlobalDeclarations(
+      GlobalDeclarations(
+        NoGlobals(
+        ) [NoGlobals]
+        GlobalVar(
+          VariableDefinition(
+            TypeIdentifier(
+             int
+            ) [TypeIdentifier]
+            VarDeclarations(
+              VarDeclaration(
+                Variable(
+                 x
+                ) [Variable]
+              ) [VarDeclaration]
+              Variable(
+               y
+              ) [Variable]
+            ) [VarDeclarations]
+          ) [VariableDefinition]
+        ) [GlobalVar]
+      ) [GlobalDeclarations]
+      GlobalConst(
+        ConstDecl(
+          ConstCommonPrefix(
+            TypeIdentifier(
+             char
+            ) [TypeIdentifier]
+          ) [ConstCommonPrefix]
+          Constant(
+            ConstDeclaration(
+             c
+              CharRef(
+               3
+              ) [CharRef]
+            ) [ConstDeclaration]
+          ) [Constant]
+        ) [ConstDecl]
+      ) [GlobalConst]
+    ) [GlobalDeclarations]
+    GlobalVar(
+      VariableDefinition(
+        TypeIdentifier(
+         int
+        ) [TypeIdentifier]
+        VarDeclaration(
+          Array(
+           niz
+          ) [Array]
+        ) [VarDeclaration]
+      ) [VariableDefinition]
+    ) [GlobalVar]
+  ) [GlobalDeclarations]
+  MethodDeclarations(
+    MethodDeclaration(
+      MethodBody(
+        MethodName(
+          ActualType(
+            TypeIdentifier(
+             int
+            ) [TypeIdentifier]
+          ) [ActualType]
+         k
+        ) [MethodName]
+        NoFormalParameters(
+        ) [NoFormalParameters]
+        LocalVariables(
+          NoLocals(
+          ) [NoLocals]
+          VariableDefinition(
+            TypeIdentifier(
+             int
+            ) [TypeIdentifier]
+            VarDeclaration(
+              Variable(
+               c
+              ) [Variable]
+            ) [VarDeclaration]
+          ) [VariableDefinition]
+        ) [LocalVariables]
+        Statements(
+          Statements(
+            NoStatementList(
+            ) [NoStatementList]
+            MatchedStatement(
+              DesignatorExpressionStatement(
+                DesignatorStatementDeclaration(
+                  DesignatorIdent(
+                   c
+                  ) [DesignatorIdent]
+                  DesignatorExpression(
+                    TermListExpr(
+                      TermExpr(
+                        FactorTerm(
+                          ConstFactor(
+                            IntRef(
+                             0
+                            ) [IntRef]
+                          ) [ConstFactor]
+                        ) [FactorTerm]
+                      ) [TermExpr]
+                    ) [TermListExpr]
+                  ) [DesignatorExpression]
+                ) [DesignatorStatementDeclaration]
+              ) [DesignatorExpressionStatement]
+            ) [MatchedStatement]
+          ) [Statements]
+          MatchedStatement(
+            ReturnStatement(
+              TermListExpr(
+                AddExpr(
+                  TermExpr(
+                    FactorTerm(
+                      DesignatorFactor(
+                        DesignatorIdent(
+                         c
+                        ) [DesignatorIdent]
+                      ) [DesignatorFactor]
+                    ) [FactorTerm]
+                  ) [TermExpr]
+                  PlusOp(
+                  ) [PlusOp]
+                  FactorTerm(
+                    ConstFactor(
+                      IntRef(
+                       3
+                      ) [IntRef]
+                    ) [ConstFactor]
+                  ) [FactorTerm]
+                ) [AddExpr]
+              ) [TermListExpr]
+            ) [ReturnStatement]
+          ) [MatchedStatement]
+        ) [Statements]
+      ) [MethodBody]
+    ) [MethodDeclaration]
+    MethodBody(
+      MethodName(
+        VoidType(
+        ) [VoidType]
+       main
+      ) [MethodName]
+      NoFormalParameters(
+      ) [NoFormalParameters]
+      NoLocals(
+      ) [NoLocals]
+      Statements(
+        Statements(
+          Statements(
+            Statements(
+              Statements(
+                Statements(
+                  Statements(
+                    Statements(
+                      Statements(
+                        Statements(
+                          NoStatementList(
+                          ) [NoStatementList]
+                          MatchedStatement(
+                            PrintStatement(
+                              TermListExpr(
+                                TermExpr(
+                                  FactorTerm(
+                                    ConstFactor(
+                                      IntRef(
+                                       1
+                                      ) [IntRef]
+                                    ) [ConstFactor]
+                                  ) [FactorTerm]
+                                ) [TermExpr]
+                              ) [TermListExpr]
+                              NoPrintArguments(
+                              ) [NoPrintArguments]
+                            ) [PrintStatement]
+                          ) [MatchedStatement]
+                        ) [Statements]
+                        MatchedStatement(
+                          ReadStatement(
+                            DesignatorIdent(
+                             x
+                            ) [DesignatorIdent]
+                          ) [ReadStatement]
+                        ) [MatchedStatement]
+                      ) [Statements]
+                      MatchedStatement(
+                        DesignatorExpressionStatement(
+                          DesignatorStatementDeclaration(
+                            DesignatorIdent(
+                             y
+                            ) [DesignatorIdent]
+                            DesignatorExpression(
+                              TermListExpr(
+                                AddExpr(
+                                  TermExpr(
+                                    FactorTerm(
+                                      DesignatorFactor(
+                                        DesignatorIdent(
+                                         x
+                                        ) [DesignatorIdent]
+                                      ) [DesignatorFactor]
+                                    ) [FactorTerm]
+                                  ) [TermExpr]
+                                  PlusOp(
+                                  ) [PlusOp]
+                                  FactorTerm(
+                                    ConstFactor(
+                                      IntRef(
+                                       3
+                                      ) [IntRef]
+                                    ) [ConstFactor]
+                                  ) [FactorTerm]
+                                ) [AddExpr]
+                              ) [TermListExpr]
+                            ) [DesignatorExpression]
+                          ) [DesignatorStatementDeclaration]
+                        ) [DesignatorExpressionStatement]
+                      ) [MatchedStatement]
+                    ) [Statements]
+                    MatchedStatement(
+                      PrintStatement(
+                        TermListExpr(
+                          TermExpr(
+                            FactorTerm(
+                              DesignatorFactor(
+                                DesignatorIdent(
+                                 y
+                                ) [DesignatorIdent]
+                              ) [DesignatorFactor]
+                            ) [FactorTerm]
+                          ) [TermExpr]
+                        ) [TermListExpr]
+                        NoPrintArguments(
+                        ) [NoPrintArguments]
+                      ) [PrintStatement]
+                    ) [MatchedStatement]
+                  ) [Statements]
+                  MatchedStatement(
+                    PrintStatement(
+                      TermListExpr(
+                        TermExpr(
+                          FactorTerm(
+                            DesignatorFactor(
+                              DesignatorIdent(
+                               c
+                              ) [DesignatorIdent]
+                            ) [DesignatorFactor]
+                          ) [FactorTerm]
+                        ) [TermExpr]
+                      ) [TermListExpr]
+                      NoPrintArguments(
+                      ) [NoPrintArguments]
+                    ) [PrintStatement]
+                  ) [MatchedStatement]
+                ) [Statements]
+                MatchedStatement(
+                  DesignatorExpressionStatement(
+                    DesignatorStatementDeclaration(
+                      DesignatorIdent(
+                       x
+                      ) [DesignatorIdent]
+                      DesignatorExpression(
+                        TermListExpr(
+                          AddExpr(
+                            TermExpr(
+                              FactorTerm(
+                                DesignatorFunctionFactor(
+                                  DesignatorIdent(
+                                   k
+                                  ) [DesignatorIdent]
+                                  NoActualParams(
+                                  ) [NoActualParams]
+                                ) [DesignatorFunctionFactor]
+                              ) [FactorTerm]
+                            ) [TermExpr]
+                            PlusOp(
+                            ) [PlusOp]
+                            MulTerm(
+                              FactorTerm(
+                                ConstFactor(
+                                  IntRef(
+                                   2
+                                  ) [IntRef]
+                                ) [ConstFactor]
+                              ) [FactorTerm]
+                              MulExp(
+                              ) [MulExp]
+                              ConstFactor(
+                                IntRef(
+                                 3
+                                ) [IntRef]
+                              ) [ConstFactor]
+                            ) [MulTerm]
+                          ) [AddExpr]
+                        ) [TermListExpr]
+                      ) [DesignatorExpression]
+                    ) [DesignatorStatementDeclaration]
+                  ) [DesignatorExpressionStatement]
+                ) [MatchedStatement]
+              ) [Statements]
+              MatchedStatement(
+                DesignatorExpressionStatement(
+                  DesignatorStatementDeclaration(
+                    DesignatorIdent(
+                     x
+                    ) [DesignatorIdent]
+                    DesignatorPostIncrement(
+                    ) [DesignatorPostIncrement]
+                  ) [DesignatorStatementDeclaration]
+                ) [DesignatorExpressionStatement]
+              ) [MatchedStatement]
+            ) [Statements]
+            MatchedStatement(
+              DesignatorExpressionStatement(
+                DesignatorStatementDeclaration(
+                  DesignatorIdent(
+                   y
+                  ) [DesignatorIdent]
+                  DesignatorExpression(
+                    TermListExpr(
+                      TermExpr(
+                        MulTerm(
+                          FactorTerm(
+                            ConstFactor(
+                              IntRef(
+                               2
+                              ) [IntRef]
+                            ) [ConstFactor]
+                          ) [FactorTerm]
+                          MulExp(
+                          ) [MulExp]
+                          DesignatorFactor(
+                            DesignatorIdent(
+                             x
+                            ) [DesignatorIdent]
+                          ) [DesignatorFactor]
+                        ) [MulTerm]
+                      ) [TermExpr]
+                    ) [TermListExpr]
+                  ) [DesignatorExpression]
+                ) [DesignatorStatementDeclaration]
+              ) [DesignatorExpressionStatement]
+            ) [MatchedStatement]
+          ) [Statements]
+          MatchedStatement(
+            PrintStatement(
+              TermListExpr(
+                TermExpr(
+                  FactorTerm(
+                    DesignatorFactor(
+                      DesignatorIdent(
+                       x
+                      ) [DesignatorIdent]
+                    ) [DesignatorFactor]
+                  ) [FactorTerm]
+                ) [TermExpr]
+              ) [TermListExpr]
+              NoPrintArguments(
+              ) [NoPrintArguments]
+            ) [PrintStatement]
+          ) [MatchedStatement]
+        ) [Statements]
+        MatchedStatement(
+          PrintStatement(
+            TermListExpr(
+              TermExpr(
+                FactorTerm(
+                  DesignatorFactor(
+                    DesignatorIdent(
+                     y
+                    ) [DesignatorIdent]
+                  ) [DesignatorFactor]
+                ) [FactorTerm]
+              ) [TermExpr]
+            ) [TermListExpr]
+            NoPrintArguments(
+            ) [NoPrintArguments]
+          ) [PrintStatement]
+        ) [MatchedStatement]
+      ) [Statements]
+    ) [MethodBody]
+  ) [MethodDeclarations]
+) [ProgramImpl]
+==============SEMANT�?IKA ANALIZA==============
+Red 2: deklarisana globalna promenljiva int x
+Red 2: deklarisana globalna promenljiva int y
+Red 3: deklarisana konstanta c sa vrednošću 3
+Red 4: deklarisana globalni niz int niz
+Red 6: deklarisana lokalna promenljiva int c
+Korišćenje promenljive c u redu 7; Var c: Int 1 0
+Korišćenje promenljive c u redu 8; Var c: Int 1 0
+Korišćenje promenljive x u redu 13; Var x: Int 0 0
+Korišćenje promenljive y u redu 14; Var y: Int 0 1
+Korišćenje promenljive x u redu 14; Var x: Int 0 0
+Korišćenje promenljive y u redu 15; Var y: Int 0 1
+Korišćenje konstante c u redu 16; Con c: Char 0 51
+Korišćenje promenljive x u redu 17; Var x: Int 0 0
+Korišćenje promenljive x u redu 18; Var x: Int 0 0
+Korišćenje promenljive y u redu 19; Var y: Int 0 1
+Korišćenje promenljive x u redu 19; Var x: Int 0 0
+Korišćenje promenljive x u redu 20; Var x: Int 0 0
+Korišćenje promenljive y u redu 21; Var y: Int 0 1
+Semanti�?ka analiza zadovoljena
+=====================SYMBOL TABLE DUMP=========================
+Type int: int, -1, -1 
+Type char: char, -1, -1 
+Con eol: char, 10, 0 
+Con null: Class [], 0, 0 
+Meth chr: char, 0, 1 
+   Var i: int, 0, 1 
+
+Meth ord: int, 0, 1 
+   Var ch: char, 0, 1 
+
+Meth len: int, 0, 1 
+   Var arr: Arr of notype, 0, 1 
+
+Type bool: , 0, 1 
+Prog MJProgram: notype, 0, 1 
+   Var x: int, 0, 0 
+   Var y: int, 1, 0 
+   Con c: char, 51, 0 
+   Var niz: Arr of int, 2, 0 
+   Meth k: int, 0, 0 
+      Var c: int, 0, 1 
+
+   Meth main: notype, 0, 0 
+
+
+
